@@ -4,14 +4,42 @@ var alphabet = "abcdefghijklmnopqrstuvwxyz";
 // Breaks the alphabet variable into an array of strings
 var letterChoice = alphabet.split("");
 
+// Variables for the game wins, losses, and guesses
+var wins = 0;
+var losses = 0;
+var guessesLeft = 9;
+var userGuesses = [];
+
+var computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
+console.log("Computer chose " + computerChoice);
+
 // This function runs on keypres
 document.onkeyup = function(event) {
 
   // Logs the key that was pressed into the userGuess variable
-  var userGuess = event.key;
+  var userLetter = event.key;
+  console.log("You chose " + userLetter);
 
   // Computer randomly chooses a letter of the alphabet array
-  var computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
+  // var computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
+  // console.log("Computer chose " + computerChoice);
 
+  if (userLetter === computerChoice && guessesLeft > 0) {
+    wins++;
+    guessesLeft = 9;
+    computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
+    console.log("New computer choice " + computerChoice)
+  } else if (userLetter !== computerChoice && guessesLeft > 0) {
+    guessesLeft--;
+  } else if (userLetter !== computerChoice && guessesLeft === 0) {
+    losses++;
+    guessesLeft = 9;
+    computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
+    console.log("New computer choice " + computerChoice)
+  };
+
+  console.log(wins);
+  console.log(losses);
+  console.log(guessesLeft);
 
 }
