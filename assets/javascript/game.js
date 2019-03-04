@@ -10,25 +10,35 @@ var losses = 0;
 var guessesLeft = 9;
 var userGuesses = [];
 
+// Variables that reference the HTML for updated information
+var winCount = document.getElementById("win-count");
+var lossCount = document.getElementById("loss-count");
+var guessRemainder = document.getElementById("guess-remainder");
+var userAttempts = document.getElementById("user-attempts");
+
+
 var computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
 console.log("Computer chose " + computerChoice);
+
+// Initializes the count of guesses remaining when the game starts
+guessRemainder.textContent = guessesLeft;
+winCount.textContent = wins;
+lossCount.textContent = losses;
 
 // This function runs on keypres
 document.onkeyup = function(event) {
 
   // Logs the key that was pressed into the userGuess variable
   var userLetter = event.key;
-  console.log("You chose " + userLetter);
-
-  // Computer randomly chooses a letter of the alphabet array
-  // var computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
-  // console.log("Computer chose " + computerChoice);
+  userGuesses.push(userLetter);
+  console.log(userGuesses);
 
   // What happens if user guesses correctly
   if (userLetter === computerChoice && guessesLeft > 0) {
     wins++;
     guessesLeft = 9;
     computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
+    winCount.textContent = wins;
     // console.log("New computer choice " + computerChoice)
     // What happens when user does not guess correctly but game isn't over
   } else if (userLetter !== computerChoice && guessesLeft > 0) {
@@ -38,8 +48,14 @@ document.onkeyup = function(event) {
     losses++;
     guessesLeft = 9;
     computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
+    lossCount.textContent = losses;
     // console.log("New computer choice " + computerChoice)
   };
+
+  // Updates the guesses left after going through the above conditions
+  guessRemainder.textContent = guessesLeft;
+
+  // guessRemainder.textContent = guessesLeft;
 
   console.log(wins);
   console.log(losses);

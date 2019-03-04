@@ -4,12 +4,17 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/javascript/game.js" type="text/javascript">
-
-    </script>
     <title>Psychic-Game</title>
   </head>
   <body>
-    <h1>Hello</h1>
+    <div class="game-content">
+      <h1>The Psychic Game</h1>
+      <p>Guess what letter I'm thinking of!</p>
+      <p>Wins: <span id = win-count></span> </p>
+      <p>Losses: <span id="loss-count"></span></p>
+      <p>Guesses Left: <span id="guess-remainder"></span></p>
+      <p>Your Guesses so far: <span id="user-attempts"></span></p>
+    </div>
+    <script src="assets/javascript/game.js" type="text/javascript"></script>
   </body>
 </html>
