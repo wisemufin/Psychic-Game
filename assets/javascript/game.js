@@ -36,30 +36,31 @@ document.onkeyup = function(event) {
 
   // What happens if user guesses correctly
   if (userLetter === computerChoice && guessesLeft > 0) {
+    userGuesses = [];
     wins++;
     guessesLeft = 9;
     computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
     winCount.textContent = wins;
-    userGuesses = [];
+
+
     // What happens when user does not guess correctly but game isn't over
   } else if (userLetter !== computerChoice && guessesLeft > 0) {
     guessesLeft--;
 
     // Game reset condition
   } else if (userLetter !== computerChoice && guessesLeft === 0) {
+    userGuesses = [];
     losses++;
     guessesLeft = 9;
     computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
     lossCount.textContent = losses;
   };
 
+
   // Updates the guesses left after going through the above conditions
   guessRemainder.textContent = guessesLeft;
 
   // guessRemainder.textContent = guessesLeft;
-
-  console.log(wins);
-  console.log(losses);
-  console.log(guessesLeft);
+  console.log("computer" + computerChoice);
 
 }
