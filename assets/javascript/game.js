@@ -24,18 +24,21 @@ document.onkeyup = function(event) {
   // var computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
   // console.log("Computer chose " + computerChoice);
 
+  // What happens if user guesses correctly
   if (userLetter === computerChoice && guessesLeft > 0) {
     wins++;
     guessesLeft = 9;
     computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
-    console.log("New computer choice " + computerChoice)
+    // console.log("New computer choice " + computerChoice)
+    // What happens when user does not guess correctly but game isn't over
   } else if (userLetter !== computerChoice && guessesLeft > 0) {
     guessesLeft--;
+    // Game reset condition
   } else if (userLetter !== computerChoice && guessesLeft === 0) {
     losses++;
     guessesLeft = 9;
     computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
-    console.log("New computer choice " + computerChoice)
+    // console.log("New computer choice " + computerChoice)
   };
 
   console.log(wins);
