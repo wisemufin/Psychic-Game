@@ -19,11 +19,20 @@ var userAttempts = document.getElementById("user-attempts");
 // Computer chooses random letter from the alphabet variable
 var computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
 
-// Initializes the count of guesses remaining when the game starts
-guessRemainder.textContent = guessesLeft;
-winCount.textContent = wins;
-lossCount.textContent = losses;
 
+
+function gameStart() {
+  userGuesses = [];
+  guessesLeft = 9;
+  // Initializes the count of guesses remaining when the game starts
+  guessRemainder.textContent = guessesLeft;
+  userAttempts.textContent = "";
+  winCount.textContent = wins;
+  lossCount.textContent = losses;
+  computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
+}
+
+gameStart();
 // This function runs on keypres
 document.onkeyup = function(event) {
 
@@ -31,36 +40,27 @@ document.onkeyup = function(event) {
   var userLetter = event.key;
   userGuesses.push(userLetter);
 
+  guessesLeft--;
+
   // Puts the user attemps onto the screen!
   userAttempts.textContent = userGuesses.join(', ');
 
   // What happens if user guesses correctly
-  if (userLetter === computerChoice && guessesLeft > 0) {
-    userGuesses = [];
+  if (userLetter === computerChoice) {
     wins++;
-    guessesLeft = 9;
-    computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
-    winCount.textContent = wins;
-
-
-    // What happens when user does not guess correctly but game isn't over
-  } else if (userLetter !== computerChoice && guessesLeft > 0) {
-    guessesLeft--;
-
-    // Game reset condition
-  } else if (userLetter !== computerChoice && guessesLeft === 0) {
-    userGuesses = [];
-    losses++;
-    guessesLeft = 9;
-    computerChoice = letterChoice[Math.floor(Math.random()*letterChoice.length)];
-    lossCount.textContent = losses;
+    gameStart();
   };
 
+    // Losing condition
+    if (userLetter !== computerChoice && guessesLeft === 0) {
+    losses++;
+    gameStart();
+  };
 
   // Updates the guesses left after going through the above conditions
   guessRemainder.textContent = guessesLeft;
 
   // guessRemainder.textContent = guessesLeft;
-  console.log("computer" + computerChoice);
-
-}
+//   console.log("computer" + computerChoice);
+//
+// }
