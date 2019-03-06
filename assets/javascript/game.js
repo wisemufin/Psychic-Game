@@ -57,5 +57,7 @@ document.onkeyup = function(event) {
     gameStart();
   };
 
+};
+
   // Updates the guesses left after going through the above conditions
   guessRemainder.textContent = guessesLeft;
