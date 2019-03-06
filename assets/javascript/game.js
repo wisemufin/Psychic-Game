@@ -41,6 +41,7 @@ document.onkeyup = function(event) {
   userGuesses.push(userLetter);
 
   guessesLeft--;
+  guessRemainder.textContent = guessesLeft;
 
   // Puts the user attemps onto the screen!
   userAttempts.textContent = userGuesses.join(', ');
