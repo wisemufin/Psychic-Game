@@ -59,8 +59,3 @@ document.onkeyup = function(event) {
 
   // Updates the guesses left after going through the above conditions
   guessRemainder.textContent = guessesLeft;
-
-  // guessRemainder.textContent = guessesLeft;
-//   console.log("computer" + computerChoice);
-//
-// }
